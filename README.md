@@ -1,6 +1,6 @@
-# Push CED source files
+# Delete CED environment
 
-Github Action to push source files to CloudEdgeDistribution.
+Github Action to delete an environment in CloudEdgeDistribution
 
 ## Inputs
 
@@ -10,7 +10,7 @@ CloudEdgeDistribution CLI token. If not specified it'll try to resolve the CLI t
 
 ### `environment`
 
-Environment to use in CloudEdgeDistribution. If not specified it'll try to resolve it from environment variable `CED_ENVIRONMENT`, it'll use the default environment in ced.json otherwise.
+Environment to delete in CloudEdgeDistribution. If not specified it'll try to resolve it from environment variable `CED_ENVIRONMENT`.
 
 ### `path`
 
