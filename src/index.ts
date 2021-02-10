@@ -6,14 +6,19 @@ GlobalErrorHandler.set();
 
 const run = async () => {
   const cliToken = core.getInput('cli-token') || process.env['CED_CLI_TOKEN'];
+  const projectId =
+    core.getInput('project-id') || process.env['CED_PROJECT_ID'];
   const environment =
     core.getInput('environment') || process.env['CED_ENVIRONMENT'];
-  const path = core.getInput('path') || process.env['CED_PROJECT_PATH'];
 
   if (!cliToken) {
     throw new Error(
       `Missing CED CLI token. Provide a CLI token by "cli-token" input parameter or define a variable "CED_CLI_TOKEN".`
     );
+  }
+
+  if (!projectId) {
+    throw new Error(`Missing projectId.`);
   }
 
   if (!environment) {
@@ -24,12 +29,11 @@ const run = async () => {
 
   const command = cli({
     token: cliToken,
-    workingPath: path,
     config: {
       useConsoleSpinner: false,
     },
   }).deleteEnvironment();
-  await command.run(environment, undefined, true);
+  await command.run(environment, projectId, true);
 };
 
 run();
